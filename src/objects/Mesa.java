@@ -5,20 +5,29 @@
  */
 package objects;
 
+import globant.Image;
+import java.awt.Graphics;
+import java.io.File;
+import javax.swing.ImageIcon;
+
 /**
  * Objeto sobre el cual se hace una reserva
  * @author hhade
  */
-public class Mesa implements Space{
-
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class Mesa extends Image{
+    
+    private final String locationImage;
+    
+    public Mesa(){
+        super();
+        locationImage = new File("src/Resources/mesa.png").getPath();
     }
-
+    
+    
+    
     @Override
-    public void eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void paint(Graphics g){
+        ImageIcon Img = new ImageIcon(locationImage);
+        g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
     }
-
 }

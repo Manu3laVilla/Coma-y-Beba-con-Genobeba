@@ -5,21 +5,26 @@
  */
 package objects;
 
+import globant.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+
 /**
  * Espacios del restaurante que afectan el mapa pero no son relevantes para 
  * la aplicación
  * @author hhade
  */
-public class Lugar implements Space{
-
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class Lugar extends Image{
+    
+    public Lugar(){
+        super();
     }
     
+    private final String locationImage = "";
+    
+    @Override
+    public void paint(Graphics g){
+        ImageIcon Img = new ImageIcon(locationImage);
+        g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
+    }
 }

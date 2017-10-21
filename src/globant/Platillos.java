@@ -17,7 +17,7 @@ import objects.Platillo;
  * @author Carlos Asprilla
  */
 public class Platillos extends javax.swing.JFrame {
-  static  ArrayList<Platillo> platillos = CrearRestaurante.platillos;
+  //static  ArrayList<Platillo> platillos = CrearRestaurante.platillos;
 
 
     /**
@@ -100,12 +100,7 @@ public class Platillos extends javax.swing.JFrame {
             public void run() {
                 
                 new Platillos().setVisible(true);
-                 DefaultListModel<String> model = new DefaultListModel<String>();
-                for (Platillo platillo : platillos) {
-
-                   model.addElement(platillo.getNombre());
-                }
-                
+                 DefaultListModel<String> model = new DefaultListModel<String>();            
             }
         });
     }
