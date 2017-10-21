@@ -19,14 +19,32 @@ public class Lugar extends Image{
     
     private final String locationImage;
     
-    public Lugar(){
+    private String nombre;
+    
+    public Lugar(String nombre){
         super();
         locationImage = new File("src/Resources/general.png").getPath();
+        this.nombre = nombre;
     }
     
     @Override
     public void paint(Graphics g){
         ImageIcon Img = new ImageIcon(locationImage);
         g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
+        g.drawString(getNombre(), 5, 25);
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

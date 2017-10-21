@@ -34,6 +34,20 @@ public class Mesa extends Image{
     public void paint(Graphics g){
         ImageIcon Img = new ImageIcon(locationImage);
         g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
-        g.drawString(String.valueOf(capacidad), 25, 25);
+        g.drawString(String.valueOf(getCapacidad()), 25, 25);
+    }
+
+    /**
+     * @return the capacidad
+     */
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    /**
+     * @param capacidad the capacidad to set
+     */
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
     }
 }
