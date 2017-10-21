@@ -7,6 +7,7 @@ package objects;
 
 import globant.Image;
 import java.awt.Graphics;
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,11 +17,12 @@ import javax.swing.ImageIcon;
  */
 public class Lugar extends Image{
     
+    private final String locationImage;
+    
     public Lugar(){
         super();
+        locationImage = new File("src/Resources/general.png").getPath();
     }
-    
-    private final String locationImage = "";
     
     @Override
     public void paint(Graphics g){

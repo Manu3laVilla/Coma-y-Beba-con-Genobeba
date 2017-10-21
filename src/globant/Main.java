@@ -5,6 +5,7 @@
  */
 package globant;
 
+import javax.swing.JOptionPane;
 import objects.Lugar;
 import objects.Mesa;
 
@@ -39,8 +40,10 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         btnMesa = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnGeneral = new javax.swing.JButton();
         panMapa = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -73,7 +76,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        btnGeneral.setText("General");
+        btnGeneral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneralActionPerformed(evt);
+            }
+        });
 
         panMapa.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -88,6 +96,10 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 327, Short.MAX_VALUE)
         );
 
+        btnGuardar.setText("Guardar");
+
+        btnCancelar.setText("Cancelar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,10 +108,16 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnMesa)
-                    .addComponent(jButton2))
+                    .addComponent(btnGeneral))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addGap(100, 100, 100))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,11 +127,15 @@ public class Main extends javax.swing.JFrame {
                         .addGap(116, 116, 116)
                         .addComponent(btnMesa)
                         .addGap(48, 48, 48)
-                        .addComponent(jButton2))
+                        .addComponent(btnGeneral))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(panMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Diseñar", jPanel1);
@@ -262,9 +284,17 @@ public class Main extends javax.swing.JFrame {
         createSpace(MESA);
     }//GEN-LAST:event_btnMesaActionPerformed
 
+    private void btnGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralActionPerformed
+        // TODO add your handling code here:
+        createSpace(GENERAL);
+    }//GEN-LAST:event_btnGeneralActionPerformed
+
     private void createSpace(int tipo){
         if(tipo == MESA){
-            Image m = new Mesa();
+            int capacidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Cuál es la capacidad de esta mesa", 
+                    "Capacidad", 
+                    JOptionPane.QUESTION_MESSAGE));
+            Image m = new Mesa(capacidad);
             panMapa.add(m).repaint();
         }else if(tipo == GENERAL){
             Lugar l = new Lugar();
@@ -303,12 +333,14 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGeneral;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMesa;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

@@ -18,9 +18,14 @@ public class Mesa extends Image{
     
     private final String locationImage;
     
-    public Mesa(){
+    private int capacidad;
+    
+    
+    
+    public Mesa(int capacidad){
         super();
         locationImage = new File("src/Resources/mesa.png").getPath();
+        this.capacidad = capacidad;
     }
     
     
@@ -29,5 +34,6 @@ public class Mesa extends Image{
     public void paint(Graphics g){
         ImageIcon Img = new ImageIcon(locationImage);
         g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
+        g.drawString(String.valueOf(capacidad), 25, 25);
     }
 }
