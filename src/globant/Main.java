@@ -57,6 +57,9 @@ public class Main extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        btnMostrarReservas = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jcReservas = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -68,6 +71,8 @@ public class Main extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         panelImagenMenu = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jcEstado = new javax.swing.JComboBox<>();
         jPanel9 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -182,6 +187,16 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable2);
 
+        btnMostrarReservas.setBackground(new java.awt.Color(255, 204, 102));
+        btnMostrarReservas.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
+        btnMostrarReservas.setText("Mostrar");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel10.setText("Reservas");
+
+        jcReservas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activas", "Ocupadas", "Pendientes" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -189,13 +204,26 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMostrarReservas)
+                    .addComponent(jLabel10)
+                    .addComponent(jcReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jcReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarReservas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -208,18 +236,18 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Nombre: ");
         jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
-        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 11, 294, -1));
+        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 294, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel4.setText("Descripción: ");
-        jPanel8.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 78, -1, -1));
-        jPanel8.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 294, 50));
+        jLabel4.setText("Estado, ¿Disponible? :");
+        jPanel8.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel8.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 294, 50));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 153, 0));
         jLabel7.setText("Imagen: ");
-        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 199, -1, -1));
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         btnAgregarImg.setBackground(new java.awt.Color(255, 204, 102));
         btnAgregarImg.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
@@ -229,22 +257,22 @@ public class Main extends javax.swing.JFrame {
                 btnAgregarImgActionPerformed(evt);
             }
         });
-        jPanel8.add(btnAgregarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 195, -1, -1));
+        jPanel8.add(btnAgregarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
         jButton10.setBackground(new java.awt.Color(255, 204, 102));
         jButton10.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
         jButton10.setText("Agregar");
-        jPanel8.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        jPanel8.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, -1));
 
         jButton11.setBackground(new java.awt.Color(255, 204, 102));
         jButton11.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
         jButton11.setText("Buscar");
-        jPanel8.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, -1, -1));
+        jPanel8.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, -1, -1));
 
         jButton12.setBackground(new java.awt.Color(255, 204, 102));
         jButton12.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
         jButton12.setText("Cancelar");
-        jPanel8.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
+        jPanel8.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         javax.swing.GroupLayout panelImagenMenuLayout = new javax.swing.GroupLayout(panelImagenMenu);
         panelImagenMenu.setLayout(panelImagenMenuLayout);
@@ -257,7 +285,15 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel8.add(panelImagenMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 150, -1));
+        jPanel8.add(panelImagenMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 150, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel5.setText("Descripción: ");
+        jPanel8.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 78, -1, -1));
+
+        jcEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
+        jPanel8.add(jcEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 60, 30));
 
         jtpDatos.addTab("Menú", null, jPanel8, "");
 
@@ -465,13 +501,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnGeneral;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMesa;
+    private javax.swing.JButton btnMostrarReservas;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -489,6 +528,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> jcEstado;
+    private javax.swing.JComboBox<String> jcReservas;
     private javax.swing.JTabbedPane jtpDatos;
     private javax.swing.JPanel panMapa;
     private javax.swing.JPanel panelImagenMenu;
