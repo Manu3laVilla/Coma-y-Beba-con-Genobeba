@@ -7,10 +7,12 @@ package globant;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import objects.Lugar;
 import objects.Mesa;
+import objects.Platillo;
 
 /**
  *
@@ -20,23 +22,34 @@ public class Main extends javax.swing.JFrame {
 
     
     private final int MESA = 1;
-    //TIpo mesa y general para la creación de estas
+    //Tipo mesa y general para la creación de estas
     private final int GENERAL = 2;
     
-    private ArrayList<Mesa> mesas = new ArrayList<>();
+    private ArrayList<Mesa> mesas;
     
-    private ArrayList<Lugar> lugares = new ArrayList<>();
+    private ArrayList<Lugar> lugares;
+    
+    private ArrayList<Platillo> platillos;
     
     
     /**
      * Creates new form NewJFrame
      */
     public Main() {
+        this.platillos = new ArrayList<>();
+        this.mesas = new ArrayList<>();
+        this.lugares = new ArrayList<>();
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         jtpDatos.setForeground(Color.red);
         btnMesa.setToolTipText("Añadir Mesa");
         btnGeneral.setToolTipText("Añadir Lugar General");
+        
+        DefaultListModel<String> model = new DefaultListModel<>(); 
+        platillos.forEach((platillo) -> {
+             model.addElement(platillo.ToString());
+        });
+        jList1.setModel(model); 
     }
 
     /**
@@ -48,6 +61,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jtpDatos = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         btnMesa = new javax.swing.JButton();
@@ -83,6 +97,10 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jbVerdetalle = new javax.swing.JButton();
+        lista = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -272,7 +290,6 @@ public class Main extends javax.swing.JFrame {
         jButton12.setBackground(new java.awt.Color(255, 204, 102));
         jButton12.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
         jButton12.setText("Modificar Estado");
-        jButton12.setActionCommand("Modificar Estado");
         jPanel8.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         javax.swing.GroupLayout panelImagenMenuLayout = new javax.swing.GroupLayout(panelImagenMenu);
@@ -296,7 +313,7 @@ public class Main extends javax.swing.JFrame {
         jcEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
         jPanel8.add(jcEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 60, 30));
 
-        jtpDatos.addTab("Menú", null, jPanel8, "");
+        jtpDatos.addTab("Crear Menú", null, jPanel8, "");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -392,6 +409,41 @@ public class Main extends javax.swing.JFrame {
 
         jtpDatos.addTab("Estadísticas", jPanel9);
 
+        jbVerdetalle.setText("Ver detalles");
+        jbVerdetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVerdetalleActionPerformed(evt);
+            }
+        });
+
+        lista.setViewportView(jList1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jbVerdetalle)))
+                .addContainerGap(264, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jbVerdetalle)
+                .addContainerGap(188, Short.MAX_VALUE))
+        );
+
+        jtpDatos.addTab("Menú", jPanel3);
+
         jLabel2.setFont(new java.awt.Font("Bodoni MT Black", 3, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 204, 0));
         jLabel2.setText("Coma y Beba con Genoveva");
@@ -446,6 +498,12 @@ public class Main extends javax.swing.JFrame {
             String ruta = chooser.getSelectedFile().toString();
         }
     }//GEN-LAST:event_btnAgregarImgActionPerformed
+
+    private void jbVerdetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerdetalleActionPerformed
+        // TODO add your handling code here:
+        Detalle d = new Detalle(platillos.get(jList1.getSelectedIndex()));
+        d.setVisible(true);
+    }//GEN-LAST:event_jbVerdetalleActionPerformed
 
     private void createSpace(int tipo){
         if(tipo == MESA){
@@ -503,6 +561,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMesa;
     private javax.swing.JButton btnMostrarReservas;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -515,8 +574,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -529,10 +590,19 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jbVerdetalle;
     private javax.swing.JComboBox<String> jcEstado;
     private javax.swing.JComboBox<String> jcReservas;
     private javax.swing.JTabbedPane jtpDatos;
+    private javax.swing.JScrollPane lista;
     private javax.swing.JPanel panMapa;
     private javax.swing.JPanel panelImagenMenu;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the platillos
+     */
+    public ArrayList<Platillo> getPlatillos() {
+        return platillos;
+    }
 }

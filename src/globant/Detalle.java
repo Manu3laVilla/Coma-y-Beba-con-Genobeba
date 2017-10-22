@@ -20,32 +20,13 @@ import objects.Platillo;
  */
 public class Detalle extends javax.swing.JFrame {
 
-    Platillo currentPlatillo = Platillos.currentPlatillo;
-
-    public class Imagen extends javax.swing.JPanel {
-
-        public Imagen() {
-            this.setSize(jPanel1.getWidth(), jPanel1.getHeight()); //se selecciona el tamaño del panel
-        }
-
-        @Override
-        public void paint(Graphics grafico) {
-
-//Se selecciona la imagen que tenemos en 
-            ImageIcon Img = currentPlatillo.getFoto();
-
-//se dibuja la imagen que tenemos en el platillo seleccionado
-            grafico.drawImage(Img.getImage(), 0, 0, getWidth(), getHeight(), null);
-
-            setOpaque(false);
-            super.paintComponent(grafico);
-        }
-    }
+    Platillo currentPlatillo;
 
     /**
      * Creates new form Detalle
+     * @param p
      */
-    public Detalle() {
+    public Detalle(Platillo p) {
         jPanel1 = new JPanel();
         txtDescripcion = new JTextArea();
         txtNombre = new JTextField();
@@ -55,8 +36,8 @@ public class Detalle extends javax.swing.JFrame {
         txtDescripcion.setText(currentPlatillo.getDescripcion());
         txtNombre.setText(currentPlatillo.getNombre());
         txtPrecio.setText(String.valueOf(currentPlatillo.getPrecio()));
-        Imagen Imagen = new Imagen();
-        jPanel1.add(Imagen);
+        Image img = new Image();
+        jPanel1.add(img);
         jPanel1.repaint();
     }
 
@@ -159,43 +140,6 @@ public class Detalle extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Detalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Detalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Detalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Detalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                new Detalle().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LbNombre;

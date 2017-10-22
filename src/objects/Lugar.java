@@ -31,7 +31,7 @@ public class Lugar extends Image{
     public void paint(Graphics g){
         ImageIcon Img = new ImageIcon(locationImage);
         g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
-        g.drawString(getNombre(), 5, 25);
+        g.drawString(getNombre(), 10, 10);
     }
 
     /**

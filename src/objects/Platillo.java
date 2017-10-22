@@ -30,6 +30,11 @@ public class Platillo {
         foto = fot;
     }
 
+    @Override
+    public String toString(){
+        return nombre;
+    }
+    
     /**
      * @return the nombre
      */

@@ -34,7 +34,7 @@ public class Mesa extends Image{
     public void paint(Graphics g){
         ImageIcon Img = new ImageIcon(locationImage);
         g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
-        g.drawString(String.valueOf(getCapacidad()), 25, 25);
+        g.drawString(String.valueOf(getCapacidad()), 10, 10);
     }
 
     /**
