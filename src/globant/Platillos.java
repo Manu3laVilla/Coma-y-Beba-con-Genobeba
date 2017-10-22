@@ -18,13 +18,22 @@ import objects.Platillo;
  */
 public class Platillos extends javax.swing.JFrame {
   //static  ArrayList<Platillo> platillos = CrearRestaurante.platillos;
-
+    ArrayList<Platillo> platillos = Main.listaPlatillos;
+    static Platillo currentPlatillo ;
 
     /**
      * Creates new form Platillos
      */
     public Platillos() {
+        jList1 = new JList<>();
+         DefaultListModel<String> model = new DefaultListModel<>(); 
+         
+        for (Platillo platillo : platillos) {
+            model.addElement(platillo.ToString());
+        }
+        
         initComponents();
+         jList1.setModel(model);
     }
 
     /**
@@ -38,23 +47,31 @@ public class Platillos extends javax.swing.JFrame {
 
         lista = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jbVerdetalle = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         lista.setViewportView(jList1);
+
+        jbVerdetalle.setText("Ver detalles");
+        jbVerdetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVerdetalleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jbVerdetalle)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -62,11 +79,20 @@ public class Platillos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbVerdetalle)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbVerdetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerdetalleActionPerformed
+        // TODO add your handling code here:
+        currentPlatillo = platillos.get(jList1.getSelectedIndex());
+        Detalle detalle = new Detalle();
+        detalle.show();
+    }//GEN-LAST:event_jbVerdetalleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,13 +126,14 @@ public class Platillos extends javax.swing.JFrame {
             public void run() {
                 
                 new Platillos().setVisible(true);
-                 DefaultListModel<String> model = new DefaultListModel<String>();            
+                           
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> jList1;
+    private javax.swing.JButton jbVerdetalle;
     private javax.swing.JScrollPane lista;
     // End of variables declaration//GEN-END:variables
 }
