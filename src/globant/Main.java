@@ -271,7 +271,8 @@ public class Main extends javax.swing.JFrame {
 
         jButton12.setBackground(new java.awt.Color(255, 204, 102));
         jButton12.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
-        jButton12.setText("Cancelar");
+        jButton12.setText("Modificar Estado");
+        jButton12.setActionCommand("Modificar Estado");
         jPanel8.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         javax.swing.GroupLayout panelImagenMenuLayout = new javax.swing.GroupLayout(panelImagenMenu);
