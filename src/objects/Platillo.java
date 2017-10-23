@@ -23,11 +23,12 @@ public class Platillo {
     
     private ImageIcon foto;
     
-    public Platillo(String name , String descr, int precio , ImageIcon fot){
+    public Platillo(String name , String descr, int precio, ImageIcon fot, boolean estado){
         nombre = name;
         descripcion = descr;
         this.precio = precio;
         foto = fot;
+        this.estado = estado;
     }
 
     @Override

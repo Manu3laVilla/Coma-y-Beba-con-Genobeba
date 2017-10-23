@@ -45,8 +45,8 @@ public class Image extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void paint(Graphics g){
-        ImageIcon Img = new ImageIcon("C:\\Users\\hhade\\Documents\\prueba.jpg");
-        g.drawImage(Img.getImage(), 0, 0, 50, 50, null);
+        ImageIcon img = new ImageIcon("C:\\Users\\hhade\\Documents\\prueba.jpg");
+        g.drawImage(img.getImage(), 0, 0, 50, 50, null);
     }
 
     @Override

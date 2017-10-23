@@ -8,7 +8,9 @@ package globant;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import objects.Lugar;
 import objects.Mesa;
@@ -21,6 +23,11 @@ import objects.Platillo;
 public class Main extends javax.swing.JFrame {
 
     
+    /**
+     * Tamaño máximo para la imagen del platillo
+     */
+    private final int SIZE = 150;
+    
     private final int MESA = 1;
     //Tipo mesa y general para la creación de estas
     private final int GENERAL = 2;
@@ -30,6 +37,8 @@ public class Main extends javax.swing.JFrame {
     private ArrayList<Lugar> lugares;
     
     private ArrayList<Platillo> platillos;
+    
+    private ImageIcon img;//Imagen seleccionada para el platillo
     
     
     /**
@@ -45,6 +54,14 @@ public class Main extends javax.swing.JFrame {
         btnMesa.setToolTipText("Añadir Mesa");
         btnGeneral.setToolTipText("Añadir Lugar General");
         
+        DefaultListModel<String> model = new DefaultListModel<>(); 
+        platillos.forEach((platillo) -> {
+             model.addElement(platillo.ToString());
+        });
+        jList1.setModel(model); 
+    }
+    
+    private void updatePlati(){
         DefaultListModel<String> model = new DefaultListModel<>(); 
         platillos.forEach((platillo) -> {
              model.addElement(platillo.ToString());
@@ -76,17 +93,19 @@ public class Main extends javax.swing.JFrame {
         jcReservas = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNombrePlatillo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtDescripcionPlatillo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnAgregarImg = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnAgregarPlatillo = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         panelImagenMenu = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jcEstado = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -254,13 +273,13 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Nombre: ");
         jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
-        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 294, -1));
+        jPanel8.add(txtNombrePlatillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 300, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 0));
         jLabel4.setText("Estado, ¿Disponible? :");
-        jPanel8.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
-        jPanel8.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 294, 50));
+        jPanel8.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jPanel8.add(txtDescripcionPlatillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 294, 50));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 153, 0));
@@ -277,41 +296,61 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel8.add(btnAgregarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
-        jButton10.setBackground(new java.awt.Color(255, 204, 102));
-        jButton10.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
-        jButton10.setText("Agregar");
-        jPanel8.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, -1));
+        btnAgregarPlatillo.setBackground(new java.awt.Color(255, 204, 102));
+        btnAgregarPlatillo.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
+        btnAgregarPlatillo.setText("Agregar");
+        btnAgregarPlatillo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPlatilloActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btnAgregarPlatillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         jButton11.setBackground(new java.awt.Color(255, 204, 102));
         jButton11.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
         jButton11.setText("Buscar");
-        jPanel8.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, -1, -1));
+        jPanel8.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, -1, -1));
 
         jButton12.setBackground(new java.awt.Color(255, 204, 102));
         jButton12.setFont(new java.awt.Font("Lao UI", 0, 16)); // NOI18N
         jButton12.setText("Modificar Estado");
-        jPanel8.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
+        jPanel8.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, -1));
+
+        panelImagenMenu.setPreferredSize(new java.awt.Dimension(150, 150));
 
         javax.swing.GroupLayout panelImagenMenuLayout = new javax.swing.GroupLayout(panelImagenMenu);
         panelImagenMenu.setLayout(panelImagenMenuLayout);
         panelImagenMenuLayout.setHorizontalGroup(
             panelImagenMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelImagenMenuLayout.setVerticalGroup(
             panelImagenMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel8.add(panelImagenMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 150, -1));
+        jPanel8.add(panelImagenMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 153, 0));
         jLabel5.setText("Descripción: ");
-        jPanel8.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 78, -1, -1));
+        jPanel8.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jcEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
-        jPanel8.add(jcEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 60, 30));
+        jPanel8.add(jcEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 60, 30));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel6.setText("Precio:");
+        jPanel8.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        txtPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
+        jPanel8.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 110, 30));
 
         jtpDatos.addTab("Crear Menú", null, jPanel8, "");
 
@@ -496,14 +535,51 @@ public class Main extends javax.swing.JFrame {
         int op = chooser.showOpenDialog(this);
         if(op == JFileChooser.APPROVE_OPTION){
             String ruta = chooser.getSelectedFile().toString();
+            img = new ImageIcon(ruta);
+            if (img.getIconHeight() <= this.SIZE && img.getIconWidth() <= this.SIZE){
+                JLabel limg = new JLabel(img);
+                limg.setSize(panelImagenMenu.getSize());
+                panelImagenMenu.add(limg);
+            }else{
+                JOptionPane.showConfirmDialog(null, "El tamaño de la imagen debe ser menor a 150x150",
+                    "Imágen demasiado grande", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnAgregarImgActionPerformed
 
     private void jbVerdetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerdetalleActionPerformed
         // TODO add your handling code here:
-        Detalle d = new Detalle(platillos.get(jList1.getSelectedIndex()));
-        d.setVisible(true);
+        if(!jList1.isSelectionEmpty()){
+            Detalle d = new Detalle(platillos.get(jList1.getSelectedIndex()));
+            d.setVisible(true);
+        }else{
+            JOptionPane.showConfirmDialog(null, "Seleccione un platillo",
+                    "No hay platillo seleccionado", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);            
+        }
     }//GEN-LAST:event_jbVerdetalleActionPerformed
+
+    private void btnAgregarPlatilloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPlatilloActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtNombrePlatillo.getText().trim();
+        String desc = txtDescripcionPlatillo.getText().trim();
+        boolean estado = jcEstado.getSelectedIndex() == 0;
+        int precio = Integer.parseInt(txtPrecio.getText());
+        if(img != null && nombre != null && desc != null){
+            Platillo p = new Platillo(nombre, desc, precio, img, estado);
+            platillos.add(p);
+            updatePlati();
+        }else{
+            JOptionPane.showConfirmDialog(null, "Debe llenar todos los campos",
+                    "Campos Vacíos", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAgregarPlatilloActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void createSpace(int tipo){
         if(tipo == MESA){
@@ -557,12 +633,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarImg;
+    private javax.swing.JButton btnAgregarPlatillo;
     private javax.swing.JButton btnGeneral;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMesa;
     private javax.swing.JButton btnMostrarReservas;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
@@ -571,6 +647,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -588,8 +665,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbVerdetalle;
     private javax.swing.JComboBox<String> jcEstado;
     private javax.swing.JComboBox<String> jcReservas;
@@ -597,12 +672,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane lista;
     private javax.swing.JPanel panMapa;
     private javax.swing.JPanel panelImagenMenu;
+    private javax.swing.JTextField txtDescripcionPlatillo;
+    private javax.swing.JTextField txtNombrePlatillo;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the platillos
-     */
-    public ArrayList<Platillo> getPlatillos() {
-        return platillos;
-    }
 }
